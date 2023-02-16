@@ -8,7 +8,7 @@ dotenv.config();
 const {connection} = require("../database/config.db");
 
 const getStations = (request, response) => {
-    const id = request.params.name;
+    const id = request.params.id;
     connection.query(`SELECT s.name, sc.distance, p.product, p.value
                         FROM stations s
                         INNER JOIN stations_competitors sc on s.cre_id = sc.cre_id
