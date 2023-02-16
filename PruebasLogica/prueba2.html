@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba2</title>
+</head>
+<body>
+    <script>
+        function primeFactors(num) {
+            let result = [];
+            for (let i = 2; i <= num; i++) {
+                while (num % i == 0) {
+                    result.push(i);
+                    num = num / i;
+                }
+            }
+            return result;
+        }
+
+        console.log(primeFactors(20));
+        console.log(primeFactors(330));
+        console.log(primeFactors(480));
+    </script>
+</body>
+</html>
