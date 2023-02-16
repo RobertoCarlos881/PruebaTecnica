@@ -22,6 +22,6 @@ const getStations = (request, response) => {
     });
 };
 
-app.route("/stations/:id").get(getStations);
+app.route("/stations").get(getStations);
 
 module.exports = app;
