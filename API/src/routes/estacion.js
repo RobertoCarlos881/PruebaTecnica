@@ -8,13 +8,16 @@ dotenv.config();
 const {connection} = require("../database/config.db");
 
 const getStations = (request, response) => {
-    const id = request.params.id;
-    connection.query(`SELECT s.name, sc.distance, p.product, p.value
-                        FROM stations s
-                        INNER JOIN stations_competitors sc on s.cre_id = sc.cre_id
-                        INNER JOIN prices p on s.cre_id = p.cre_id
-                        WHERE s.cre_id=${id}
-                        GROUP BY s.name, sc.distance, p.product, p.value;`,
+    const id = request.query.id;
+    console.log(request.query.id);
+    connection.query(`SELECT s.name, sc.distance, p.product, p.value, b.name
+                    FROM stations s
+                    INNER JOIN stations_competitors sc on s.cre_id = sc.cre_id
+                    INNER JOIN prices p on s.cre_id = p.cre_id
+                    INNER JOIN stations_brands sb on s.cre_id = sb.cre_id
+                    INNER JOIN brands b on sb.id_brand = b.id
+                    WHERE s.cre_id='${id}'
+                    GROUP BY s.name, sc.distance, p.product, p.value, b.name;`,
     (error, results) => {
         if(error)
             throw error;
